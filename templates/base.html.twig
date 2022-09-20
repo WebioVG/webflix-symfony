@@ -15,25 +15,27 @@
     </head>
 
     <body>
-        <header>
-            <h1>Webflix Symfony</h1>
-            <ul>
-                <li><a href="{{ path('home') }}">Home</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">Movies</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">About</a></li>
+        <header class="flex items-center px-6 h-[10vh] shadow-lg">
+            <h1 class="font-bold align-middle text-3xl mr-6">Webflix Symfony</h1>
+            <ul class="flex items-center gap-4 text-xl">
+                <li><a class="inline-block py-1 border-b-2 border-white hover:border-slate-400" href="{{ path('home') }}">Home</a></li>
+                <li><a class="inline-block py-1 border-b-2 border-white hover:border-slate-400" href="#">Categories</a></li>
+                <li><a class="inline-block py-1 border-b-2 border-white hover:border-slate-400" href="#">Movies</a></li>
+                <li><a class="inline-block py-1 border-b-2 border-white hover:border-slate-400" href="#">Contact</a></li>
+                <li><a class="inline-block py-1 border-b-2 border-white hover:border-slate-400" href="#">About</a></li>
             </ul>
-            <div>
-                <span>Login</span>
-                <span>Register</span>
+            <div class="flex justify-end grow gap-3 text-xl">
+                <span class="inline-block">Login</span>
+                <span class="inline-block">Register</span>
             </div>
         </header>
 
-        {% block body %}{% endblock %}
+        <main class="px-6 my-3">
+            {% block body %}{% endblock %}
+        </main>
 
-        <footer>
-            <h3>Copyrights 2022 - Webflix</h3>
+        <footer class="px-6">
+            <h3 class="text-center text-lg">Copyright 2022 - Webflix</h3>
         </footer>
     </body>
 </html>
