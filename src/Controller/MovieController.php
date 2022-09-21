@@ -14,7 +14,7 @@ class MovieController extends AbstractController
         return $this->render('movie/categories.html.twig');
     }
 
-    #[Route('/list', name: 'list')]
+    #[Route('/movies/list', name: 'movie_list')]
     public function list(): Response
     {
         return $this->render('movie/list.html.twig');
