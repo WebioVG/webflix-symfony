@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Actor;
+use App\Entity\Actors;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Actor>
+ * @extends ServiceEntityRepository<Actors>
  *
- * @method Actor|null find($id, $lockMode = null, $lockVersion = null)
- * @method Actor|null findOneBy(array $criteria, array $orderBy = null)
- * @method Actor[]    findAll()
- * @method Actor[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Actors|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Actors|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Actors[]    findAll()
+ * @method Actors[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ActorRepository extends ServiceEntityRepository
+class ActorsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Actor::class);
+        parent::__construct($registry, Actors::class);
     }
 
-    public function add(Actor $entity, bool $flush = false): void
+    public function add(Actors $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ActorRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Actor $entity, bool $flush = false): void
+    public function remove(Actors $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class ActorRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Actor[] Returns an array of Actor objects
+//     * @return Actors[] Returns an array of Actors objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class ActorRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Actor
+//    public function findOneBySomeField($value): ?Actors
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')

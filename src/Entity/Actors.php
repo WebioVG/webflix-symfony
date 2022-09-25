@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\ActorRepository;
+use App\Repository\ActorsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ActorRepository::class)]
-class Actor
+#[ORM\Entity(repositoryClass: ActorsRepository::class)]
+class Actors
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,15 +22,15 @@ class Actor
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $avatar = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $birthday = null;
 
-    #[ORM\ManyToMany(targetEntity: Movie::class, mappedBy: 'actor_id')]
-    private Collection $movie_id;
+    #[ORM\ManyToMany(targetEntity: Movies::class, mappedBy: 'actors')]
+    private Collection $movies;
 
     public function __construct()
     {
-        $this->movie_id = new ArrayCollection();
+        $this->movies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,27 +75,27 @@ class Actor
     }
 
     /**
-     * @return Collection<int, Movie>
+     * @return Collection<int, Movies>
      */
-    public function getMovieId(): Collection
+    public function getMovies(): Collection
     {
-        return $this->movie_id;
+        return $this->movies;
     }
 
-    public function addMovieId(Movie $movieId): self
+    public function addMovie(Movies $movie): self
     {
-        if (!$this->movie_id->contains($movieId)) {
-            $this->movie_id->add($movieId);
-            $movieId->addActorId($this);
+        if (!$this->movies->contains($movie)) {
+            $this->movies->add($movie);
+            $movie->addActor($this);
         }
 
         return $this;
     }
 
-    public function removeMovieId(Movie $movieId): self
+    public function removeMovie(Movies $movie): self
     {
-        if ($this->movie_id->removeElement($movieId)) {
-            $movieId->removeActorId($this);
+        if ($this->movies->removeElement($movie)) {
+            $movie->removeActor($this);
         }
 
         return $this;

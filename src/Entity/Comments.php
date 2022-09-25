@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CommentRepository;
+use App\Repository\CommentsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CommentRepository::class)]
-class Comment
+#[ORM\Entity(repositoryClass: CommentsRepository::class)]
+class Comments
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -20,12 +20,12 @@ class Comment
     #[ORM\Column]
     private ?int $note = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Movie $movie = null;
+    private ?Movies $movieId = null;
 
-    #[ORM\ManyToOne(inversedBy: 'comment')]
-    private ?User $user = null;
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    private ?Users $userId = null;
 
     public function getId(): ?int
     {
@@ -56,26 +56,26 @@ class Comment
         return $this;
     }
 
-    public function getMovie(): ?Movie
+    public function getMovieId(): ?Movies
     {
-        return $this->movie;
+        return $this->movieId;
     }
 
-    public function setMovie(?Movie $movie): self
+    public function setMovieId(?Movies $movieId): self
     {
-        $this->movie = $movie;
+        $this->movieId = $movieId;
 
         return $this;
     }
 
-    public function getUse(): ?User
+    public function getUserId(): ?Users
     {
-        return $this->user;
+        return $this->userId;
     }
 
-    public function setUse(?User $user): self
+    public function setUserId(?Users $userId): self
     {
-        $this->user = $user;
+        $this->userId = $userId;
 
         return $this;
     }

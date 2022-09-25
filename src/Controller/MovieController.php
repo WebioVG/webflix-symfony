@@ -19,7 +19,6 @@ class MovieController extends AbstractController
         $this->doctrine = $doctrine;
         $this->entityManager = $doctrine->getManager();
         $this->movies = $doctrine->getRepository(Movie::class)->findAll();
-        dump($this->movies);
     }
 
     #[Route('/categories', name: 'categories')]
