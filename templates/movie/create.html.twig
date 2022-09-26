@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Movie list - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <h2 class="text-center text-red-700 text-3xl font-semibold">Add a movie</h2>
+
+    <div class="max-w-[800px] mx-auto border rounded p-5 mt-5 flex flex-col items-center">
+        {{ form_start(form) }}
+        
+        <div class="pb-2">
+            {{ form_label(form.title, 'Title', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+            {{ form_widget(form.title) }}
+            {{ form_errors(form.title) }}
+        </div>
+        <div class="pb-2">
+            {{ form_label(form.synopsys, 'Synopsys', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+            {{ form_widget(form.synopsys) }}
+            {{ form_errors(form.synopsys) }}
+        </div>
+        <div class="pb-2">
+            {{ form_label(form.duration, 'Duration', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+            {{ form_widget(form.duration) }}
+            {{ form_errors(form.duration) }}
+        </div>
+        <div class="pb-2">
+            {{ form_label(form.youtube, 'Youtube', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+            {{ form_widget(form.youtube) }}
+            {{ form_errors(form.youtube) }}
+        </div>
+        <div class="pb-2">
+            {{ form_label(form.cover, 'Cover', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+            {{ form_widget(form.cover) }}
+            {{ form_errors(form.cover) }}
+        </div>
+        <div class="pb-2">
+            {{ form_label(form.releasedAt, 'Released at', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+            {{ form_widget(form.releasedAt) }}
+            {{ form_errors(form.releasedAt) }}
+        </div>
+
+        <div class="flex justify-center mt-3">
+            <button class="py-1 px-2 bg-sky-700 rounded text-white font-semibold inline-block" type="submit">Add</button>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+    
+{% endblock %}

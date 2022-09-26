@@ -3,22 +3,23 @@
 namespace App\Controller;
 
 use App\Entity\Movies;
+use App\Form\MoviesType;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MovieController extends AbstractController
 {
     public $doctrine;
-    public $entityManager;
-    public $movies;
+    public $manager;
 
-    public function __construct(ManagerRegistry $doctrine)
+    public function __construct(ManagerRegistry $doctrine, EntityManagerInterface $manager)
     {
         $this->doctrine = $doctrine;
-        $this->entityManager = $doctrine->getManager();
-        $this->movies = $doctrine->getRepository(Movies::class)->findAll();
+        $this->manager = $manager;
     }
 
     #[Route('/categories', name: 'categories')]
@@ -30,8 +31,30 @@ class MovieController extends AbstractController
     #[Route('/movies/list', name: 'movie_list')]
     public function list(): Response
     {
+        $movies = $this->doctrine->getRepository(Movies::class)->findAll();;
+        
         return $this->render('movie/list.html.twig', [
-            'movies' => $this->movies
+            'movies' => $movies
+        ]);
+    }
+
+    #[Route('/movies/create', name: 'movie_create')]
+    public function create(Request $request): Response
+    {
+        $movie = new Movies();
+        $form = $this->createForm(MoviesType::class, $movie);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->manager->persist($movie);
+            $this->manager->flush();
+
+            return $this->redirectToRoute('movie_show', [ 'id' => $movie->getId() ]);
+        }
+
+        return $this->render('movie/create.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 
