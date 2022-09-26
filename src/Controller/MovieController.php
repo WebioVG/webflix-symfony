@@ -65,4 +65,13 @@ class MovieController extends AbstractController
             'movie' => $movie
         ]);
     }
+
+    #[Route('/movies/{id}/delete', name: 'movie_delete')]
+    public function delete(Movies $movie): Response
+    {
+        $this->manager->remove($movie);
+        $this->manager->flush();
+
+        return $this->redirectToRoute('movie_list');
+    }
 }
