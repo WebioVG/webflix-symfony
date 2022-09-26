@@ -20,7 +20,7 @@
         </div>
         <div class="pb-2">
             {{ form_label(form.duration, 'Duration', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
-            {{ form_widget(form.duration) }}
+            {{ form_widget(form.duration, {'attr': {'min': '0', 'max': '500'}}) }}
             {{ form_errors(form.duration) }}
         </div>
         <div class="pb-2">

@@ -53,7 +53,7 @@
 
             <div class="pb-2">
                 {{ form_label(commentForm.note, 'Note', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
-                {{ form_widget(commentForm.note, {'attr': {'class': 'p-1 border rounded'}}) }}
+                {{ form_widget(commentForm.note, {'attr': {'class': 'p-1 border rounded', 'min': '0', 'max': '5'}}) }}
                 {{ form_errors(commentForm.note) }}
             </div>
                 <div class="flex justify-center mt-3">
