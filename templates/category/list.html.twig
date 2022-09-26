@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Categories list - {{ parent() }} {% endblock %}
+
+{% block body %}
+    <h2 class="text-center text-red-700 text-3xl font-semibold mb-8">Categories</h2>
+
+    <div class="mb-5 flex justify-center">
+        <a class="py-1 px-2 bg-sky-700 rounded text-white font-semibold inline-block" href="{{ path('category_create') }}">Add a category</a>
+    </div>
+
+    <div class="grid grid-cols-3">
+        {% for category in categories %}
+            <div class="m-10 flex justify-center items-center text-5xl duration-500 hover:rotate-[360deg]">
+                <a href="#" class="flex justify-center items-center w-[300px] h-[300px] rounded-[50%] border-[12px] border-slate-700">
+                    {{ category.name }}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

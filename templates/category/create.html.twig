@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Categories list - {{ parent() }} {% endblock %}
+
+{% block body %}
+    <h2 class="text-center text-red-700 text-3xl font-semibold mb-8">Categories</h2>
+
+    <div class="max-w-[800px] mx-auto border rounded p-5 flex flex-col items-center">
+        {{ form_start(categoryForm) }}
+        
+        {{ form_label(categoryForm.name, 'Name', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+        {{ form_widget(categoryForm.name, {'attr': {'placeholder': 'Category name...', 'class': 'p-2 border'}}) }}
+        {{ form_errors(categoryForm.name) }}
+        
+        <div class="flex justify-center mt-3">
+            <button class="py-1 px-2 bg-sky-700 rounded text-white font-semibold inline-block" type="submit">Add</button>
+        </div>
+
+        {{ form_end(categoryForm) }}
+    </div>
+{% endblock %}

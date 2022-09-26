@@ -51,6 +51,11 @@ class MoviesType extends AbstractType
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text'
             ])
+            ->add('categoryId', null, [
+                'choice_label' => 'name',
+                'expanded' => false,
+                'placeholder' => 'Choisir une catégorie...',
+            ])
         ;
     }
 

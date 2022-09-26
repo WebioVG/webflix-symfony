@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Movie list - {{ parent() }}{% endblock %}
+{% block title %} Add a movie - {{ parent() }}{% endblock %}
 
 {% block body %}
     <h2 class="text-center text-red-700 text-3xl font-semibold mb-8">Add a movie</h2>
@@ -37,6 +37,11 @@
             {{ form_label(form.releasedAt, 'Released at', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
             {{ form_widget(form.releasedAt) }}
             {{ form_errors(form.releasedAt) }}
+        </div>
+        <div class="pb-2">
+            {{ form_label(form.categoryId, 'Category', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+            {{ form_widget(form.categoryId) }}
+            {{ form_errors(form.categoryId) }}
         </div>
 
         <div class="flex justify-center mt-3">

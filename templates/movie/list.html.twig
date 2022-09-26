@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Movie list - {{ parent() }}{% endblock %}
+{% block title %} Movies list - {{ parent() }}{% endblock %}
 
 {% block body %}
     <h2 class="text-center text-red-700 text-3xl font-semibold mb-8">The last movies</h2>
@@ -17,6 +17,11 @@
                     <h2 class="font-semibold text-lg mb-3">
                         {{ movie.title }}
                     </h2>
+                    {% if movie.categoryId %}
+                        <p class="mb-3 italic">
+                            {{ movie.categoryId.name }}
+                        </p>
+                    {% endif %}
                     <p class="mb-3">
                         {{ movie.releasedAt | date('j/m/Y') }} |
                         {{ movie.duration }}min

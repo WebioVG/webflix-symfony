@@ -1,15 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Movie list - {{ parent() }}{% endblock %}
+{% block title %} {{ movie.title }} - {{ parent() }}{% endblock %}
 
 {% block body %}
-    <h2 class="text-center text-red-700 text-3xl font-semibold mb-8">{{ movie.title }}</h2>
+    <h2 class="text-cecnter text-red-700 text-3xl font-semibold mb-8">{{ movie.title }}</h2>
 
     <div class="max-w-[1000px] mx-auto border rounded-lg">
         <img class="mx-auto object-cover w-full" src="{{ movie.cover }}" alt="">
 
         <div class="p-3 mt-3">
             <h3 class="font-semibold text-2xl text-center mb-3">{{ movie.title }}</h3>
+            {% if movie.categoryId %}
+                <p class="mb-3 italic">
+                    {{ movie.categoryId.name }}
+                </p>
+            {% endif %}
             <p class="mb-3">
                 {{ movie.synopsys }}
             </p>
