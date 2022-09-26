@@ -3,9 +3,9 @@
 {% block title %} Movie list - {{ parent() }}{% endblock %}
 
 {% block body %}
-    <h2 class="text-center text-red-700 text-3xl font-semibold">{{ movie.title }}</h2>
+    <h2 class="text-center text-red-700 text-3xl font-semibold mb-8">{{ movie.title }}</h2>
 
-    <div class="mt-5 max-w-[1000px] mx-auto border rounded-lg">
+    <div class="max-w-[1000px] mx-auto border rounded-lg">
         <img class="mx-auto object-cover" src="{{ movie.cover }}" alt="">
 
         <div class="p-3 mt-3">
