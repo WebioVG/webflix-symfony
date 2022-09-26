@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Comments;
 use App\Entity\Movies;
+use App\Form\CommentsType;
 use App\Form\MoviesType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -59,10 +61,23 @@ class MovieController extends AbstractController
     }
 
     #[Route('/movies/{id}/show', name: 'movie_show')]
-    public function show(Movies $movie): Response
+    public function show(Movies $movie, Request $request): Response
     {
+        $comment = new Comments();
+        $commentForm = $this->createForm(CommentsType::class, $comment);
+
+        $commentForm->handleRequest($request);
+
+        if ($commentForm->isSubmitted() && $commentForm->isValid()) {
+            $comment->setMovieId($movie);
+            
+            $this->manager->persist($comment);
+            $this->manager->flush();
+        }
+
         return $this->render('movie/show.html.twig', [
-            'movie' => $movie
+            'movie' => $movie,
+            'commentForm' => $commentForm->createView()
         ]);
     }
 

@@ -6,10 +6,10 @@
     <h2 class="text-center text-red-700 text-3xl font-semibold mb-8">{{ movie.title }}</h2>
 
     <div class="max-w-[1000px] mx-auto border rounded-lg">
-        <img class="mx-auto object-cover" src="{{ movie.cover }}" alt="">
+        <img class="mx-auto object-cover w-full" src="{{ movie.cover }}" alt="">
 
         <div class="p-3 mt-3">
-            <h3 class="font-semibold text-xl text-center mb-3">{{ movie.title }}</h3>
+            <h3 class="font-semibold text-2xl text-center mb-3">{{ movie.title }}</h3>
             <p class="mb-3">
                 {{ movie.synopsys }}
             </p>
@@ -17,9 +17,49 @@
                 {{ movie.releasedAt | date('j/m/Y') }} |
                 {{ movie.duration }}min
             </p>
-            <div class="flex justify-center mb-3">
+            <div class="flex justify-center">
                 <a class="py-1 px-2 bg-sky-700 rounded text-white font-semibold inline-block" href="{{ movie.youtube }}">See trailer</a>
             </div>
+        </div>
+
+        <hr class="my-5">
+
+        <div class="p-3">
+            <h3 class="font-semibold text-xl mb-3">Comments</h3>
+
+            {% if movie.comments %}
+                <div class="mb-5">
+                    {% for comment in movie.comments %}
+                        <div class="border rounded p-2">
+                            <p class="pb-2 border-b">
+                                <span class="font-semibold">Rate:</span>
+                                {{ comment.note }}
+                            </p>
+                            <p class="pt-2">{{ comment.message }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <h4 class="font-semibold text-lg mb-3">Leave a comment</h4>
+
+            {{ form_start(commentForm) }}
+
+            <div class="pb-2">
+                {{ form_label(commentForm.message, 'Message', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+                {{ form_widget(commentForm.message, {'attr': {'class': 'p-1 border rounded'}}) }}
+                {{ form_errors(commentForm.message) }}
+            </div>
+
+            <div class="pb-2">
+                {{ form_label(commentForm.note, 'Note', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+                {{ form_widget(commentForm.note, {'attr': {'class': 'p-1 border rounded'}}) }}
+                {{ form_errors(commentForm.note) }}
+            </div>
+                <div class="flex justify-center mt-3">
+                    <button class="py-1 px-2 bg-sky-700 rounded text-white font-semibold inline-block" type="submit">Comment</button>
+                </div>
+            {{ form_end(commentForm) }}
         </div>
     </div>
 {% endblock %}
