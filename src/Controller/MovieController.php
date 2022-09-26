@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Movie;
+use App\Entity\Movies;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +18,7 @@ class MovieController extends AbstractController
     {
         $this->doctrine = $doctrine;
         $this->entityManager = $doctrine->getManager();
-        $this->movies = $doctrine->getRepository(Movie::class)->findAll();
+        $this->movies = $doctrine->getRepository(Movies::class)->findAll();
     }
 
     #[Route('/categories', name: 'categories')]
