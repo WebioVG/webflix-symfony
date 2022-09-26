@@ -34,4 +34,12 @@ class MovieController extends AbstractController
             'movies' => $this->movies
         ]);
     }
+
+    #[Route('/movies/{id}/show', name: 'movie_show')]
+    public function show(Movies $movie): Response
+    {
+        return $this->render('movie/show.html.twig', [
+            'movie' => $movie
+        ]);
+    }
 }

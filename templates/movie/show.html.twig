@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Movie list - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <h2 class="text-center text-red-700 text-3xl font-semibold">{{ movie.title }}</h2>
+
+    <div class="mt-5 max-w-[1000px] mx-auto border rounded-lg">
+        <img class="mx-auto object-cover" src="{{ movie.cover }}" alt="">
+
+        <div class="p-3 mt-3">
+            <h3 class="font-semibold text-xl text-center mb-3">{{ movie.title }}</h3>
+            <p class="mb-3">
+                {{ movie.synopsys }}
+            </p>
+            <p class="mb-3 font-semibold">
+                {{ movie.releasedAt | date('j/m/Y') }} |
+                {{ movie.duration }}min
+            </p>
+            <div class="flex justify-center mb-3">
+                <a class="py-1 px-2 bg-sky-700 rounded text-white font-semibold" href="{{ movie.youtube }}">See trailer</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
