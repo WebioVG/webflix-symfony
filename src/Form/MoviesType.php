@@ -6,6 +6,7 @@ use App\Entity\Movies;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType as TypeTextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,7 +22,7 @@ class MoviesType extends AbstractType
                     'class' => 'border px-2'
                 ]
             ])
-            ->add('synopsys', TypeTextType::class, [
+            ->add('synopsys', TextareaType::class, [
                 'attr' => [
                     'placeholder' => 'Movie synopsys...',
                     'class' => 'border px-2'

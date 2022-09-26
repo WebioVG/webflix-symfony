@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Movie list - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <h2 class="text-center text-red-700 text-3xl font-semibold mb-8">Edit the movie {{ movie.title }}</h2>
+
+    <div class="max-w-[800px] mx-auto border rounded p-5 flex flex-col items-center">
+        {{ form_start(movieForm) }}
+        
+        <div class="pb-2">
+            {{ form_label(movieForm.title, 'Title', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+            {{ form_widget(movieForm.title) }}
+            {{ form_errors(movieForm.title) }}
+        </div>
+        <div class="pb-2">
+            {{ form_label(movieForm.synopsys, 'Synopsys', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+            {{ form_widget(movieForm.synopsys) }}
+            {{ form_errors(movieForm.synopsys) }}
+        </div>
+        <div class="pb-2">
+            {{ form_label(movieForm.duration, 'Duration', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+            {{ form_widget(movieForm.duration, {'attr': {'min': '0', 'max': '500'}}) }}
+            {{ form_errors(movieForm.duration) }}
+        </div>
+        <div class="pb-2">
+            {{ form_label(movieForm.youtube, 'Youtube', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+            {{ form_widget(movieForm.youtube) }}
+            {{ form_errors(movieForm.youtube) }}
+        </div>
+        <div class="pb-2">
+            {{ form_label(movieForm.cover, 'Cover', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+            {{ form_widget(movieForm.cover) }}
+            {{ form_errors(movieForm.cover) }}
+        </div>
+        <div class="pb-2">
+            {{ form_label(movieForm.releasedAt, 'Released at', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+            {{ form_widget(movieForm.releasedAt) }}
+            {{ form_errors(movieForm.releasedAt) }}
+        </div>
+
+        <div class="flex justify-center mt-3">
+            <button class="py-1 px-2 bg-sky-700 rounded text-white font-semibold inline-block" type="submit">Edit</button>
+        </div>
+
+        {{ form_end(movieForm) }}
+    </div>
+    
+{% endblock %}

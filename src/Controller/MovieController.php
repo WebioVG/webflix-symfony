@@ -81,6 +81,28 @@ class MovieController extends AbstractController
         ]);
     }
 
+    #[Route('/movies/{id}/edit', name: 'movie_edit')]
+    public function edit(Request $request, Movies $movie): Response
+    {
+        $movieForm = $this->createForm(MoviesType::class, $movie);
+
+        $movieForm->handleRequest($request);
+
+        if ($movieForm->isSubmitted() && $movieForm->isValid()) {            
+            $this->manager->persist($movie);
+            $this->manager->flush();
+
+            return $this->redirectToRoute('movie_show', [
+                'id' => $movie->getId()
+            ]);
+        }
+
+        return $this->render('movie/edit.html.twig', [
+            'movie' => $movie,
+            'movieForm' => $movieForm->createView()
+        ]);
+    }
+
     #[Route('/movies/{id}/delete', name: 'movie_delete')]
     public function delete(Movies $movie): Response
     {
