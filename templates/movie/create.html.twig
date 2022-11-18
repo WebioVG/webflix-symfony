@@ -19,14 +19,14 @@
             {{ form_errors(form.synopsys) }}
         </div>
         <div class="pb-2">
+            {{ form_label(form.tagline, 'Tagline', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
+            {{ form_widget(form.tagline) }}
+            {{ form_errors(form.tagline) }}
+        </div>
+        <div class="pb-2">
             {{ form_label(form.duration, 'Duration', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
             {{ form_widget(form.duration, {'attr': {'min': '0', 'max': '500'}}) }}
             {{ form_errors(form.duration) }}
-        </div>
-        <div class="pb-2">
-            {{ form_label(form.youtube, 'Youtube', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
-            {{ form_widget(form.youtube) }}
-            {{ form_errors(form.youtube) }}
         </div>
         <div class="pb-2">
             {{ form_label(form.cover, 'Cover', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
@@ -37,11 +37,6 @@
             {{ form_label(form.releasedAt, 'Released at', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
             {{ form_widget(form.releasedAt) }}
             {{ form_errors(form.releasedAt) }}
-        </div>
-        <div class="pb-2">
-            {{ form_label(form.categoryId, 'Category', {'label_attr': {'class': 'inline-block w-[100px]'}}) }}
-            {{ form_widget(form.categoryId) }}
-            {{ form_errors(form.categoryId) }}
         </div>
 
         <div class="flex justify-center mt-3">

@@ -3,28 +3,25 @@
 {% block title %} Movies list - {{ parent() }}{% endblock %}
 
 {% block body %}
-    <h2 class="text-center text-red-700 text-3xl font-semibold mb-8">The last movies</h2>
+    <h2 class="text-center text-red-700 text-3xl font-semibold mb-8">The most popular movies</h2>
 
     <div class="flex justify-center gap-3 mb-5">
         <a class="py-1 px-2 bg-sky-700 rounded text-white font-semibold inline-block" href="{{ path('movie_create') }}">Add a movie</a>
     </div>
 
-    <div class="grid grid-cols-4 gap-3 max-w-[800px] mx-auto">
+    <div class="grid grid-cols-4 gap-3 max-w-[1000px] mx-auto">
         {% for movie in movies %}
             <div class="border shadow-lg">
-                <img class="object-cover" src="{{ movie.cover }}" alt="">
+                <a href="{{ path('movie_show', {'id': movie.id }) }}">
+                    <img class="object-cover" src="{{ movie.cover }}" alt="">
+                </a>
                 <div class="p-3 mt-3">
-                    <h2 class="font-semibold text-lg mb-3">
-                        {{ movie.title }}
+                    <h2 class="font-semibold text-lg mb-1">
+                        <a href="{{ path('movie_show', {'id': movie.id }) }}">{{ movie.title }}</a>
                     </h2>
-                    {% if movie.categoryId %}
-                        <p class="mb-3 italic">
-                            {{ movie.categoryId.name }}
-                        </p>
-                    {% endif %}
+                    <hr class="mb-3">
                     <p class="mb-3">
-                        {{ movie.releasedAt | date('j/m/Y') }} |
-                        {{ movie.duration }}min
+                        {{ movie.tagline }}
                     </p>
                     <div>
                         <a class="py-1 px-2 bg-sky-700 rounded text-white font-semibold inline-block" href="{{ path('movie_show', {'id': movie.id}) }}">See</a>

@@ -3,33 +3,44 @@
 {% block title %} {{ movie.title }} - {{ parent() }}{% endblock %}
 
 {% block body %}
-    <h2 class="text-cecnter text-red-700 text-3xl font-semibold mb-8">{{ movie.title }}</h2>
-
     <div class="max-w-[1000px] mx-auto border rounded-lg">
-        <img class="mx-auto object-cover w-full" src="{{ movie.cover }}" alt="">
-
+        <a class="flex justify-center" href="{{ path('movie_show', {'id': movie.id }) }}">
+            <img class="object-cover" src="{{ movie.cover }}" alt="">
+        </a>
+        
         <div class="p-3 mt-3">
-            <h3 class="font-semibold text-2xl text-center mb-3">{{ movie.title }}</h3>
-            {% if movie.categoryId %}
-                <p class="mb-3 italic">
-                    {{ movie.categoryId.name }}
+            <h2 class="font-semibold text-2xl text-center mb-1">
+                <a href="{{ path('movie_show', {'id': movie.id }) }}">{{ movie.title }}</a>
+            </h2>
+            <hr class="my-3">
+            {% if movie.tagline %}
+                <p class="mb-3 text-center italic">
+                    {{ movie.tagline }}
                 </p>
+                <hr class="my-3">
             {% endif %}
             <p class="mb-3">
                 {{ movie.synopsys }}
             </p>
             <p class="mb-3 font-semibold">
-                {{ movie.releasedAt | date('j/m/Y') }} |
-                {{ movie.duration }}min
             </p>
-            <div class="flex justify-center">
-                <a class="py-1 px-2 bg-sky-700 rounded text-white font-semibold inline-block" href="{{ movie.youtube }}">See trailer</a>
-            </div>
+            <ul class="mb-3">
+                <li class="mb-1"><span class="w-[150px] inline-block font-semibold">Release date: </span>{{ movie.releasedAt | date('d/m/Y') }}</li>
+                <li class="mb-1"><span class="w-[150px] inline-block font-semibold">Duration: </span>{{ movie.duration }}min</li>
+            </ul>
+                <div class="mb-1 flex items-center">
+                    {% for i in 0..9 %}
+                        <svg class="inline" {{ i < (movie.ratingAverage|round) ? 'fill="yellow"' : '' }} width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                            <path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/>
+                        </svg>
+                    {% endfor %}
+                    <span class="ml-3 italic">({{ movie.ratingCount }} avis)</span>
+                </div>
         </div>
 
         <hr class="my-5">
 
-        <div class="p-3">
+        {# <div class="p-3">
             <h3 class="font-semibold text-xl mb-3">Comments</h3>
 
             {% if movie.comments %}
@@ -65,6 +76,6 @@
                     <button class="py-1 px-2 bg-sky-700 rounded text-white font-semibold inline-block" type="submit">Comment</button>
                 </div>
             {{ form_end(commentForm) }}
-        </div>
+        </div> #}
     </div>
 {% endblock %}

@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Categories;
-use App\Form\CategoriesType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,20 +33,20 @@ class CategoryController extends AbstractController
     #[Route('/categories/create', name: 'category_create')]
     public function create(Request $request): Response
     {
-        $category = new Categories();
-        $categoryForm = $this->createForm(CategoriesType::class, $category);
+        // $category = new Category();
+        // $categoryForm = $this->createForm(CategoriesType::class, $category);
 
-        $categoryForm->handleRequest($request);
+        // $categoryForm->handleRequest($request);
 
-        if ($categoryForm->isSubmitted() && $categoryForm->isValid()) {
-            $this->manager->persist($category);
-            $this->manager->flush();
+        // if ($categoryForm->isSubmitted() && $categoryForm->isValid()) {
+        //     $this->manager->persist($category);
+        //     $this->manager->flush();
 
-            return $this->redirectToRoute('category_list');
-        }
+        //     return $this->redirectToRoute('category_list');
+        // }
 
         return $this->render('category/create.html.twig', [
-            'categoryForm' => $categoryForm->createView()
+            // 'categoryForm' => $categoryForm->createView()
         ]);
     }
 }
